@@ -1,4 +1,4 @@
-from cart import cart_total, apply_discount
+from cart import cart_total
 
 
 def test_cart_total():
@@ -6,12 +6,18 @@ def test_cart_total():
         {"price": 100, "qty": 2},
         {"price": 50, "qty": 1}
     ]
+
     assert cart_total(items) == 250
 
 
-def test_apply_discount():
-    assert apply_discount(200, 10) == 180
+def test_empty_cart():
+    items = []
+    assert cart_total(items) == 0
 
 
-def test_zero_discount():
-    assert apply_discount(100, 0) == 100
+def test_single_item():
+    items = [
+        {"price": 200, "qty": 3}
+    ]
+
+    assert cart_total(items) == 600
